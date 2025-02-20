@@ -8,7 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Getting user GitHub username
+        run: echo "GitHub username is ${{ github.actor }}"
+      
       - name: Hola Mundo
-        run: echo "Hola Mundo"
+        run: echo "Hola Mundo from github actions"
+        
       - name: Compile and run js
         run: node index.js
