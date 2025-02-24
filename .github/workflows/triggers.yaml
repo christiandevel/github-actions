@@ -1,0 +1,57 @@
+name: Triggers
+run-name: !Estoy ejecutando el workflow de triggers
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - '**.js'
+  issues:
+    types:
+      - labeled
+  workflow_dispatch:
+    inputs:
+      lenguaje_favorito:
+        description: 'Lenguaje de programación favorito'
+        required: true
+        default: 'JavaScript'
+        type: choice
+        options:
+          - JavaScript
+          - Python
+          - Java
+          - C
+          - C++
+          - PHP
+          - Ruby
+          - Go
+          - R
+          - Scala
+          - Swift
+          - Kotlin
+          - TypeScript
+          - Rust
+      nombre
+        description: 'Nombre'
+        required: true
+        default: Chris
+        type: string
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  hola-mundo-manual:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Displaying name
+        run: echo "Your name is ${{ inputs.nombre }}"
+      
+      - name: Displaying language
+        run: echo "Your favorite language is ${{ inputs.lenguaje_favorito }}"
+        
+      - name: Compile and run js
+        run: node index.js
+        
