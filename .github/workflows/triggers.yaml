@@ -1,5 +1,5 @@
 name: Triggers
-run-name: !Estoy ejecutando el workflow de triggers
+run-name: Estoy ejecutando el workflow de triggers
 on:
   push:
     branches:
