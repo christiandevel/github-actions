@@ -33,10 +33,10 @@ on:
           - Kotlin
           - TypeScript
           - Rust
-      nombre
+      nombre:
         description: 'Nombre'
         required: true
-        default: Chris
+        default: 'Chris'
         type: string
   schedule:
     - cron: '0 0 * * *'
