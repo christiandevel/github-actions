@@ -1,0 +1,82 @@
+name: Expresiones
+on:
+  push:
+    branches:
+      - main
+  Workflow_dispatch:
+    inputs:
+      name:
+        description: 'Nombre'
+        required: true
+        default: 'Chris'
+        type: string
+      age:
+        description: 'Edad'
+        required: true
+        default: '25'
+        type: number
+      language:
+        description: 'Lenguaje de programación favorito'
+        required: true
+        default: 'JavaScript'
+        type: choice
+        options:
+          - JavaScript
+          - Python
+          - Java
+          - C
+          - C++
+          - PHP
+          - Ruby
+          - Go
+          - R
+          - Scala
+          - Swift
+          - Kotlin
+          - TypeScript
+          - Rust
+jobs:
+  manual:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Displaying name
+        run: echo "Your name is ${{ inputs.name }}"
+      
+      - name: Displaying age
+        run: echo "Your age is ${{ inputs.age }}"
+      
+      - name: Displaying language
+        run: echo "Your favorite language is ${{ inputs.language }}"
+        
+  show-name:
+    if: ${{ inputs.age >= 18 }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Displaying name
+        run: echo "Your name is ${{ inputs.name }}"
+  show-age:
+    if: ${{ inputs.age < 18 }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Displaying age
+        run: echo "Your age is ${{ inputs.age }}"
+  
+
+  automatic:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Hola Mundo Automatic
+        run: echo "Hola Mundo from github actions"
+      
+      - name: Running js
+        run: node index.js
